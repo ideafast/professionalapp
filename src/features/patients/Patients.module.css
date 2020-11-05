@@ -1,3 +1,11 @@
 .patients {
-    background-color: crimson;
+  background-color: crimson;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.inventoryUsersHeading {
+  font-size: 78px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-top: 2px;
 }
