@@ -22,7 +22,8 @@ export const patientsSlice = createSlice({
 export const { setPatients } = patientsSlice.actions;
 
 export const fetchUserIDs = (): AppThunk => async dispatch => {
-  const response: Response = await fetch('http://localhost:8000/inventory/users');
+//   const response: Response = await fetch('http://localhost:8000/inventory/users');
+  const response: Response = await fetch('https://randomuser.me/api/');
   const results = await response.json();
   console.log(results);
   dispatch(setPatients(['USER1', 'USER2']));

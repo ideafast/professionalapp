@@ -10,8 +10,8 @@ export function Patients() {
   const users = useSelector(selectPatients);
   const dispatch = useDispatch();
 
-  const userList = users.map((userID) =>
-    <li>{userID}</li>
+  const userList = users.map((userID, i) =>
+    <li key={`user-${i}`}>{userID}</li>
   );
 
   return (
