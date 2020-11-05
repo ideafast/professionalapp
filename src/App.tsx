@@ -55,4 +55,17 @@ function App() {
   );
 }
 
+if ('serviceWorker' in navigator) {
+  navigator
+    .serviceWorker
+    .register(
+      // path to the service worker file
+      'service-worker.js'
+    )
+    // the registration is async and it returns a promise
+    .then(function (reg) {
+      console.log('Registration Successful');
+    });
+}
+
 export default App;
