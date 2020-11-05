@@ -36,9 +36,12 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
-export const incrementAsync = (amount: number): AppThunk => dispatch => {
+export const incrementAsync = (amount: number): AppThunk => async dispatch => {
+  const response: Response = await fetch('https://randomuser.me/api/');
+  const randomUser = await response.json();
+  const randomAge: number = randomUser.results[0].dob.age;
   setTimeout(() => {
-    dispatch(incrementByAmount(amount));
+    dispatch(incrementByAmount(randomAge));
   }, 1000);
 };
 
