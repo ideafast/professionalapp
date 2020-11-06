@@ -39,22 +39,36 @@ export function Patients() {
   useEffect(() => {
     if (!isInit) {
       dispatch(fetchUserIDs());
-      setInit(true)
+      setInit(true);
     }
   }, [isInit, dispatch])
 
-  // NOTE - would definitely have filters on this list
+  useEffect(() => {
+    console.log(locationFilter);
+    console.log(idFilter);
+  }, [locationFilter, idFilter]);
+
+  const getFilteredUsers = () => {
+    return users.filter(user => user.includes(idFilter)).filter(user => {
+       return locationFilter === locations[0] ||
+       (locationFilter === locations[1] && user.substring(0, 1) === 'N') ||
+       (locationFilter === locations[2] && user.substring(0, 1) === 'K') ||
+       (locationFilter === locations[3] && user.substring(0, 1) === 'E') ||
+       (locationFilter === locations[4] && user.substring(0, 1) === 'G');
+    });
+  }
+
   return (
     <div className={styles.patients}>
       <div className={styles.inventoryUsersHeading}>PATIENTS</div>
-      <input type='text' placeholder='Search IDs' />
-      <select value={locationFilter}>
+      <input type='text' placeholder='Search IDs' onChange={e => setIDFilter(e.target.value)} />
+      <select value={locationFilter} onChange={e => setLocationFilter(e.target.value)}>
         {locations.map((location, i) =>
           <option key={`location-${i}`} value={`${location}`}>{location}</option>
         )}
       </select>
       <Accordion allowMultipleExpanded allowZeroExpanded>
-        {users.map((userID, i) =>
+        {getFilteredUsers().map((userID, i) =>
           <PatientRecord key={`user-${i}`} user={createObjectFromUser(userID)} />
         )}
       </Accordion>
