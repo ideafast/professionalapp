@@ -5,6 +5,7 @@ import {
   selectPatients,
 } from './patientsSlice';
 import styles from './Patients.module.css';
+import PatientRecord from '../../components/PatientRecord';
 
 export function Patients() {
   const users = useSelector(selectPatients);
@@ -20,7 +21,7 @@ export function Patients() {
   }, [isInit, dispatch])
 
   const userList = users.map((userID, i) =>
-    <li key={`user-${i}`}>{userID}</li>
+    <PatientRecord key={`user-${i}`}>{userID}</PatientRecord>
   );
 
   return (

@@ -25,7 +25,6 @@ export const fetchUserIDs = (): AppThunk => async dispatch => {
   const response: Response = await fetch('http://localhost:8000/inventory/users');
   const results = await response.json();
   const userIDs = results.data;
-  console.log(results);
   dispatch(setPatients(userIDs));
 }
 
