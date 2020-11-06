@@ -22,7 +22,15 @@ export default function PatientRecord(props: any) {
       </AccordionItemHeading>
       <AccordionItemPanel>
         <div className={styles.patientRecord}>
-          I AM A PATIENT
+          <div>Location: {props.user.location}</div>
+          <div>Status: {props.user.status}</div>
+          <div>Devices:
+            <ul>
+            {props.user.devices.map((device: any, i: number) =>
+              <li key={`device-${i}`}>{device}</li>
+            )}
+            </ul>
+          </div>
         </div>
       </AccordionItemPanel>
     </AccordionItem>

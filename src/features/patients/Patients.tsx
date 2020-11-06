@@ -15,8 +15,14 @@ const createObjectFromUser = (userID: string) => {
   // NOTE: This is only because we can currently only return the ID of a user
   // and to show how the whole user object is passed as a prop to patient record
   // It will likely contain properly formed information like issues, devices etc.
+  const devices = ['Axivity', 'VitalPatch'];
+  const locations = ['Newcastle', 'Kiel', 'Rotterdam', 'Muenster'];
+  const statuses = ['Not Started', 'Active', 'Completed', 'Withdrawn'];
   return {
-    id: userID
+    id: userID,
+    devices,
+    location: locations[Math.floor(locations.length * Math.random())],
+    status: statuses[Math.floor(statuses.length * Math.random())],
   }
 }
 
@@ -33,6 +39,7 @@ export function Patients() {
     }
   }, [isInit, dispatch])
 
+  // NOTE - would definitely have filters on this list
   return (
     <div className={styles.patients}>
       <div className={styles.inventoryUsersHeading}>PATIENTS</div>
