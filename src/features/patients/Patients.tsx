@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchUserIDs,
@@ -10,6 +10,15 @@ export function Patients() {
   const users = useSelector(selectPatients);
   const dispatch = useDispatch();
 
+  const [isInit, setInit] = useState(false);
+
+  useEffect(() => {
+    if (!isInit) {
+      dispatch(fetchUserIDs());
+      setInit(true)
+    }
+  }, [isInit, dispatch])
+
   const userList = users.map((userID, i) =>
     <li key={`user-${i}`}>{userID}</li>
   );
@@ -18,7 +27,6 @@ export function Patients() {
     <div className={styles.patients}>
       <div className={styles.inventoryUsersHeading}>INVENTORY USERS LIST</div>
       <ul>{userList}</ul>
-      <button onClick={() => dispatch(fetchUserIDs())}>Fetch Users</button>
     </div>
   );
 }
