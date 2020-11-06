@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import { Cohort } from './features/cohort/Cohort';
 import { Counter } from './features/counter/Counter';
 import { Patients } from './features/patients/Patients';
 import './App.css';
@@ -9,6 +10,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <Cohort />
         <Patients />
         <Counter />
         <p>
