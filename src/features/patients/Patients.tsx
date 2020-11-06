@@ -35,7 +35,7 @@ export function Patients() {
   return (
     <div className={styles.patients}>
       <div className={styles.inventoryUsersHeading}>INVENTORY USERS LIST</div>
-      <Accordion>
+      <Accordion allowMultipleExpanded allowZeroExpanded>
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
