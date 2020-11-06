@@ -16,12 +16,21 @@ const createObjectFromUser = (userID: string) => {
   // and to show how the whole user object is passed as a prop to patient record
   // It will likely contain properly formed information like issues, devices etc.
   const devices = ['Axivity', 'VitalPatch'];
-  const locations = ['Newcastle', 'Kiel', 'Rotterdam', 'Muenster'];
   const statuses = ['Not Started', 'Active', 'Completed', 'Withdrawn'];
+  let location;
+  if (userID.substring(0, 1) === 'N') {
+    location = 'Newcastle';
+  } else if (userID.substring(0, 1) === 'K') {
+    location = 'Kiel';
+  } else if (userID.substring(0, 1) === 'E') {
+    location = 'Rotterdam';
+  } else if (userID.substring(0, 1) === 'G') {
+    location = 'Muenster';
+  }
   return {
     id: userID,
     devices,
-    location: locations[Math.floor(locations.length * Math.random())],
+    location,
     status: statuses[Math.floor(statuses.length * Math.random())],
   }
 }
@@ -42,11 +51,6 @@ export function Patients() {
       setInit(true);
     }
   }, [isInit, dispatch])
-
-  useEffect(() => {
-    console.log(locationFilter);
-    console.log(idFilter);
-  }, [locationFilter, idFilter]);
 
   const getFilteredUsers = () => {
     return users.filter(user => user.includes(idFilter)).filter(user => {
