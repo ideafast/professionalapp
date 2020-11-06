@@ -30,7 +30,11 @@ export function Patients() {
   const users = useSelector(selectPatients);
   const dispatch = useDispatch();
 
+  const locations = ['All', 'Newcastle', 'Kiel', 'Rotterdam', 'Muenster'];
+
   const [isInit, setInit] = useState(false);
+  const [locationFilter, setLocationFilter] = useState(locations[0]);
+  const [idFilter, setIDFilter] = useState('');
 
   useEffect(() => {
     if (!isInit) {
@@ -43,6 +47,12 @@ export function Patients() {
   return (
     <div className={styles.patients}>
       <div className={styles.inventoryUsersHeading}>PATIENTS</div>
+      <input type='text' placeholder='Search IDs' />
+      <select value={locationFilter}>
+        {locations.map((location, i) =>
+          <option key={`location-${i}`} value={`${location}`}>{location}</option>
+        )}
+      </select>
       <Accordion allowMultipleExpanded allowZeroExpanded>
         {users.map((userID, i) =>
           <PatientRecord key={`user-${i}`} user={createObjectFromUser(userID)} />
