@@ -7,12 +7,17 @@ import {
 } from 'react-accessible-accordion';
 import styles from './styles.module.css';
 
+// NOTE: User typescript interface should be properly expanded out
+// interface User {
+//   id: string;
+// }
+
 export default function PatientRecord(props: any) {
   return (
     <AccordionItem>
       <AccordionItemHeading>
         <AccordionItemButton>
-          {props.children}  
+          {props.user.id}  
         </AccordionItemButton>
       </AccordionItemHeading>
       <AccordionItemPanel>

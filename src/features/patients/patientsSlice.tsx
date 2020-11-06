@@ -22,6 +22,7 @@ export const patientsSlice = createSlice({
 export const { setPatients } = patientsSlice.actions;
 
 export const fetchUserIDs = (): AppThunk => async dispatch => {
+  // NOTE: In future, this endpoint will contain much more information about the users (devices, status, location etc.)
   const response: Response = await fetch('http://localhost:8000/inventory/users');
   const results = await response.json();
   const userIDs = results.data;
